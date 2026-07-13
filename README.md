@@ -1,59 +1,103 @@
 # GifsApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.12.
+GifsApp es una aplicación web de búsqueda y exploración de GIFs construida con Angular 21 y la API pública de Giphy. La app permite descubrir GIFs en tendencia, buscar contenido por texto y conservar un historial de consultas para revisitar resultados anteriores.
 
-## Development server
+## ¿Qué ofrece la aplicación?
 
-To start a local development server, run:
+La experiencia del usuario está organizada en tres vistas principales:
+
+- Trending: muestra una colección de GIFs populares obtenidos desde la API de Giphy.
+- Search: permite buscar GIFs por palabras clave y mostrar resultados en tiempo real al ejecutar la búsqueda.
+- History: muestra los resultados almacenados de búsquedas previas, usando la ruta correspondiente a cada consulta.
+
+Además, la interfaz incluye un menú lateral con navegación entre estas secciones y conserva el historial de búsquedas en el almacenamiento local del navegador.
+
+## Características principales
+
+- Consumo de la API de Giphy para obtener GIFs.
+- Búsqueda por texto con resultados paginados por la respuesta de la API.
+- Vista de gifs en tendencia.
+- Historial de búsquedas persistente mediante localStorage.
+- Arquitectura basada en componentes standalone de Angular.
+- Gestión de estado con signals y flujos reactivos con RxJS.
+- Navegación con rutas anidadas y carga diferida de páginas.
+
+## Tecnologías utilizadas
+
+- Angular 21
+- TypeScript
+- RxJS
+- Angular Router
+- Angular HttpClient
+- Giphy API
+- Signals de Angular
+
+## Estructura del proyecto
+
+La aplicación sigue una organización modular dentro de la carpeta src:
+
+- src/app: contiene la configuración general de la app, las rutas y el componente raíz.
+- src/app/gifs/pages: define las vistas principales de la aplicación: Trending, Search y History.
+- src/app/gifs/components: agrupa los componentes reutilizables como la lista de GIFs y el menú lateral.
+- src/app/gifs/services: contiene el servicio principal que gestiona la comunicación con Giphy y el historial.
+- src/app/gifs/interfaces y mapper: definen los modelos de datos y la transformación de respuestas de la API.
+- src/environments: almacena la configuración del entorno, incluyendo la URL base de Giphy y la API key.
+
+## Requisitos previos
+
+- Node.js 20 o superior
+- npm 10 o superior
+
+## Instalación
+
+1. Clona el repositorio.
+2. Instala las dependencias:
 
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+3. Inicia la aplicación en modo desarrollo:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+4. Abre tu navegador en:
 
-```bash
-ng generate --help
+```text
+http://localhost:4200/
 ```
 
-## Building
+## Scripts disponibles
 
-To build the project run:
+- npm start: inicia el servidor de desarrollo.
+- npm run build: compila la aplicación para producción.
+- npm test: ejecuta las pruebas de la app.
+- npm run watch: compila en modo observación para desarrollo.
 
-```bash
-ng build
-```
+## Configuración de la API
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+La aplicación utiliza la configuración definida en [src/environments/environment.ts](src/environments/environment.ts). Allí se incluyen:
 
-## Running unit tests
+- la URL base de la API de Giphy
+- la API key utilizada para las solicitudes
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Si deseas usar otra cuenta o un entorno distinto, puedes actualizar esos valores.
 
-```bash
-ng test
-```
+## Flujo de uso
 
-## Running end-to-end tests
+1. Al iniciar la app, se carga la vista de Trending con GIFs populares.
+2. Desde la vista de Search, el usuario escribe una consulta y presiona Enter para obtener resultados.
+3. Cada búsqueda se guarda en el historial y queda disponible desde la ruta correspondiente.
+4. El usuario puede volver a ver resultados anteriores desde el historial sin tener que volver a consultar la API.
 
-For end-to-end (e2e) testing, run:
+## Notas importantes
 
-```bash
-ng e2e
-```
+- El historial de búsquedas se almacena en localStorage del navegador.
+- La aplicación es totalmente frontend y no requiere un backend propio.
+- Las peticiones se realizan directamente desde el cliente hacia la API de Giphy.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Estado del proyecto
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este proyecto funciona como una demostración práctica de una aplicación Angular moderna con componentes standalone, signals, enrutamiento y consumo de APIs externas.
